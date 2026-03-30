@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model HostelBlock {
+  id          Int      @id @default(autoincrement())
+  blockName   String   @map("block_name")
+  genderType  String   @map("gender_type")
+  totalFloors Int      @map("total_floors")
+  rooms       Room[]
+  wardens     Warden[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("hostel_block")
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  roomNumber String  @map("room_number")
+  floorNo   Int      @map("floor_no")
+  roomType  String   @map("room_type")
+  capacity  Int
+  blockId   Int      @map("block_id")
+  block     HostelBlock @relation(fields: [blockId], references: [id])
+  students  Student[]
+  sockets   Socket[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("room")
+}
+
+model Student {
+  id          Int      @id @default(autoincrement())
+  regNo       String   @unique @map("reg_no")
+  firstName   String   @map("first_name")
+  lastName    String   @map("last_name")
+  department  String
+  yearOfStudy Int      @map("year_of_study")
+  phoneNo     String   @map("phone_no")
+  roomId      Int?     @map("room_id")
+  room        Room?    @relation(fields: [roomId], references: [id])
+  fines       Fine[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("student")
+}
+
+model Socket {
+  id           Int    @id @default(autoincrement())
+  socketLabel  String @map("socket_label")
+  socketType   String @map("socket_type")
+  socketStatus String @map("socket_status")
+  roomId       Int    @map("room_id")
+  room         Room   @relation(fields: [roomId], references: [id])
+  powerEvents  PowerEvent[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("socket")
+}
+
+model PowerEvent {
+  id          Int      @id @default(autoincrement())
+  socketId    Int      @map("socket_id")
+  socket      Socket   @relation(fields: [socketId], references: [id])
+  startTime   DateTime @map("start_time")
+  endTime     DateTime @map("end_time")
+  watts       Float
+  eventSource String   @map("event_source")
+  violations  ViolationCase[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("power_event")
+}
+
+model LoadRule {
+  id                 Int     @id @default(autoincrement())
+  ruleName           String  @unique @map("rule_name")
+  maxWatts           Float   @map("max_watts")
+  maxDurationMinutes Int     @map("max_duration_minutes")
+  severityLevel      String  @map("severity_level")
+  isActive           Boolean @default(true) @map("is_active")
+  violations         ViolationCase[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@map("load_rule")
+}
+
+model Warden {
+  id        Int     @id @default(autoincrement())
+  firstName String  @map("first_name")
+  lastName  String  @map("last_name")
+  phoneNo   String  @map("phone_no")
+  email     String  @unique
+  blockId   Int     @map("block_id")
+  block     HostelBlock @relation(fields: [blockId], references: [id])
+  fines     Fine[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("warden")
+}
+
+model ViolationCase {
+  id               Int      @id @default(autoincrement())
+  eventId          Int      @map("event_id")
+  event            PowerEvent @relation(fields: [eventId], references: [id])
+  ruleId           Int      @map("rule_id")
+  rule             LoadRule @relation(fields: [ruleId], references: [id])
+  detectedTime     DateTime @map("detected_time")
+  violationReason  String   @map("violation_reason")
+  caseStatus       String   @default("Pending") @map("case_status")
+  fine             Fine?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("violation_case")
+}
+
+model Fine {
+  id             Int      @id @default(autoincrement())
+  caseId         Int      @unique @map("case_id")
+  case           ViolationCase @relation(fields: [caseId], references: [id])
+  studentId      Int      @map("student_id")
+  student        Student  @relation(fields: [studentId], references: [id])
+  wardenId       Int      @map("warden_id")
+  warden         Warden   @relation(fields: [wardenId], references: [id])
+  fineAmount     Float    @map("fine_amount")
+  issuedDate     DateTime @map("issued_date")
+  dueDate        DateTime @map("due_date")
+  paymentStatus  String   @default("Pending") @map("payment_status")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("fine")
+}
