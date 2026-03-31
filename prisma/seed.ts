@@ -46,8 +46,8 @@ async function main() {
 
   // Students
   const depts = ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'AI&DS', 'BME'];
-  const firstNames = ['Arjun', 'Kishal', 'Priya', 'Vikram', 'Sneha', 'Rahul', 'Divya', 'Karthik', 'Meera', 'Surya', 'Ananya', 'Deepak', 'Nithya', 'Varun', 'Lakshmi', 'Aditya', 'Kavitha', 'Suresh', 'Ritu', 'Manoj'];
-  const lastNames = ['P', 'Kumar', 'S', 'R', 'Nair', 'Sharma', 'Iyer', 'Rao', 'Patel', 'Das', 'Singh', 'Verma', 'Gupta', 'Reddy', 'Chopra', 'Malhotra', 'Bhat', 'Menon', 'Pillai', 'Dutta'];
+  const firstNames = ['Krithika', 'Kishal', 'Tharun', 'Raghav', 'Mano', 'Kumar', 'Divya', 'Karthik', 'Meera', 'Surya', 'Ananya', 'Deepak', 'Nithya', 'Varun', 'Lakshmi', 'Aditya', 'Kavitha', 'Suresh', 'Ritu', 'Manoj'];
+  const lastNames = ['P', 'Kumar', 'S', 'R', 'L', 'Sharma', 'Iyer', 'Rao', 'Patel', 'Das', 'Singh', 'Verma', 'Gupta', 'Reddy', 'Chopra', 'Malhotra', 'Bhat', 'Menon', 'Pillai', 'Dutta'];
 
   const students = [];
   for (let i = 0; i < 60; i++) {
@@ -96,10 +96,10 @@ async function main() {
 
   // Wardens
   const wardens = await Promise.all([
-    prisma.warden.create({ data: { firstName: 'Ravi', lastName: 'Kumar', phoneNo: '9998887770', email: 'ravi.kumar@hostel.edu', blockId: blocks[0].id } }),
-    prisma.warden.create({ data: { firstName: 'Sunitha', lastName: 'Raj', phoneNo: '9998887771', email: 'sunitha.raj@hostel.edu', blockId: blocks[1].id } }),
-    prisma.warden.create({ data: { firstName: 'Mohammed', lastName: 'Ali', phoneNo: '9998887772', email: 'mohammed.ali@hostel.edu', blockId: blocks[2].id } }),
-    prisma.warden.create({ data: { firstName: 'Lakshmi', lastName: 'Devi', phoneNo: '9998887773', email: 'lakshmi.devi@hostel.edu', blockId: blocks[3].id } }),
+    prisma.warden.create({ data: { firstName: 'Ravi', lastName: 'Kumar', phoneNo: '9998887770', email: 'ravi.kumar@warden.vit.ac.in', blockId: blocks[0].id } }),
+    prisma.warden.create({ data: { firstName: 'Sunitha', lastName: 'Raj', phoneNo: '9998887771', email: 'sunitha.raj@warden.vit.ac.in', blockId: blocks[1].id } }),
+    prisma.warden.create({ data: { firstName: 'Mohammed', lastName: 'Ali', phoneNo: '9998887772', email: 'mohammed.ali@warden.vit.ac.in', blockId: blocks[2].id } }),
+    prisma.warden.create({ data: { firstName: 'Lakshmi', lastName: 'Devi', phoneNo: '9998887773', email: 'lakshmi.devi@warden.vit.ac.in', blockId: blocks[3].id } }),
   ]);
 
   // Power Events
