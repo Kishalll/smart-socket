@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HostelWatch — Socket Load & Violation Monitor",
+  title: "S.A.F.E System",
   description: "Centralized monitoring system for hostel socket usage, power events, and violation management.",
 };
 

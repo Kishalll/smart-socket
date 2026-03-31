@@ -70,8 +70,8 @@ function SidebarContent({ collapsed }: { collapsed: boolean }) {
         </div>
         {!collapsed && (
           <div className="flex flex-col min-w-0">
-            <span className="text-sm font-semibold text-sidebar-foreground tracking-tight truncate">HostelWatch</span>
-            <span className="text-[10px] text-sidebar-foreground/50 leading-none truncate">Violation Monitor</span>
+            <span className="text-sm font-semibold text-sidebar-foreground tracking-tight truncate">S.A.F.E System</span>
+            <span className="text-[10px] text-sidebar-foreground/50 leading-none truncate">Power Violation Monitor</span>
           </div>
         )}
       </div>

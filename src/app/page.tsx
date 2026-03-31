@@ -55,7 +55,7 @@ export default function Home() {
             <Menu size={16} />
           </Button>
           <div className="flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground">HostelWatch</span>
+            <span className="text-muted-foreground">S.A.F.E System</span>
             <span className="text-muted-foreground/40">/</span>
             <span className="font-medium capitalize">
               {currentPage.replace('-', ' ')}
