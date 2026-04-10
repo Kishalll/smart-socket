@@ -13,6 +13,7 @@ import {
   UserCheck,
   AlertTriangle,
   Banknote,
+  Terminal,
   ChevronLeft,
   PanelLeftClose,
   PanelLeftOpen,
@@ -45,17 +46,19 @@ const navItems: NavItem[] = [
   { page: 'wardens', label: 'Wardens', icon: <UserCheck size={18} />, section: 'manage' },
   { page: 'violations', label: 'Violations', icon: <AlertTriangle size={18} />, section: 'enforce' },
   { page: 'fines', label: 'Fines', icon: <Banknote size={18} />, section: 'enforce' },
+  { page: 'terminal', label: 'Terminal', icon: <Terminal size={18} />, section: 'tools' },
 ];
 
 function SidebarContent({ collapsed }: { collapsed: boolean }) {
   const { currentPage, setPage, sidebarOpen } = useAppStore();
 
-  const sections = ['overview', 'manage', 'monitor', 'enforce'] as const;
+  const sections = ['overview', 'manage', 'monitor', 'enforce', 'tools'] as const;
   const sectionLabels: Record<string, string> = {
     overview: '',
     manage: 'MANAGEMENT',
     monitor: 'MONITORING',
     enforce: 'ENFORCEMENT',
+    tools: 'TOOLS',
   };
 
   return (

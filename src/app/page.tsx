@@ -13,6 +13,7 @@ import { LoadRulesPage } from '@/components/pages/load-rules';
 import { WardensPage } from '@/components/pages/wardens';
 import { ViolationsPage } from '@/components/pages/violations';
 import { FinesPage } from '@/components/pages/fines';
+import { TerminalPage } from '../components/pages/terminal';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -27,6 +28,7 @@ const pages: Record<string, React.ComponentType> = {
   wardens: WardensPage,
   violations: ViolationsPage,
   fines: FinesPage,
+  terminal: TerminalPage,
 };
 
 export default function Home() {

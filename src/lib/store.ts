@@ -10,7 +10,8 @@ export type Page =
   | 'load-rules'
   | 'wardens'
   | 'violations'
-  | 'fines';
+  | 'fines'
+  | 'terminal';
 
 interface AppState {
   currentPage: Page;
