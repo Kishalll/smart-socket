@@ -2,8 +2,6 @@
 
 **Selective Appliance Filtering & Enforcement** — A hostel socket load and appliance violation monitoring system. Web dashboard for managing hostel blocks, rooms, students, electrical sockets, power events, load rules, wardens, violation cases, and fines.
 
-Course: BCSE302L — Database Systems
-
 ---
 
 ## Tech Stack
@@ -226,6 +224,6 @@ npm run db:generate
 
 ## Notes
 
-- **Prisma version**: This project uses Prisma 6.19.2 (pinned). Do not upgrade to v7 — it has breaking changes to datasource config.
+- **Prisma version**: This project uses Prisma 6.19.2. DO NOT UPGRADE TO v7 — it has breaking changes to datasource config.
 - **SQLite limitations**: Not suitable for production with concurrent writes. For production, switch to PostgreSQL or MySQL.
 - **Single-page app**: Navigation is handled via Zustand state, not Next.js file-based routing.
